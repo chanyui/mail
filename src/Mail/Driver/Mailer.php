@@ -136,21 +136,6 @@ class Mailer extends Config implements Contract
             $msg = "Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}";
         }
 
-        return $msg;
-    }
-
-    /**
-     * 返回结果
-     * @param $msg
-     * @return mixed
-     * @throws Exception
-     */
-    private function returnMail($msg)
-    {
-        if ($this->config['debug'] > 0) {
-            throw new Exception($msg);
-        } else {
-            return $msg;
-        }
+        return $this->returnMail($msg);
     }
 }

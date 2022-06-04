@@ -2,6 +2,8 @@
 
 namespace Chanyu\Mail\Core;
 
+use Chanyu\Mail\Exception\MailException;
+
 class Config
 {
     protected $config = [
@@ -14,4 +16,18 @@ class Config
         'name'     => '',                                 //send name
         'charset'  => 'UTF-8',                            //The character set of the message.
     ];
+
+    /**
+     * @param $msg
+     * @return bool
+     * @throws MailException
+     */
+    protected function returnMail($msg)
+    {
+        if ($msg !== true) {
+            throw new MailException($msg);
+        }else{
+            return $msg;
+        }
+    }
 }

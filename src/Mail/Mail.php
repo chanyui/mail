@@ -2,14 +2,27 @@
 
 namespace Chanyu\Mail;
 
+use Chanyu\Mail\Exception\MailException;
+
 class Mail
 {
-
+    /**
+     * @param $name
+     * @param $arguments
+     * @return mixed
+     * @throws MailException
+     */
     public static function __callStatic($name, $arguments)
     {
         return (new static())->__call($name, $arguments);
     }
 
+    /**
+     * @param $name
+     * @param $arguments
+     * @return mixed
+     * @throws MailException
+     */
     public function __call($name, $arguments)
     {
         $name = ucfirst($name);
@@ -19,15 +32,16 @@ class Mail
         $class = "Chanyu\\{$product}\\Driver\\{$name}";
 
         if (class_exists($class)) {
-            return new $class($arguments);
+            return new $class(...$arguments);
         }
 
-        // throw new ClientException(
-        //     "$product contains no {$product}",
-        //     'SDK.VersionNotFound'
-        // );
+        throw new MailException("Driver Name Of {$name} Not Found!");
     }
 
+    /**
+     * @return mixed|string
+     * @throws MailException
+     */
     protected function getProductName()
     {
         $array = explode('\\', get_class($this));
@@ -36,9 +50,6 @@ class Mail
             return $array[1];
         }
 
-        // throw new ClientException(
-        //     'Service name not found.',
-        //     'SDK.ServiceNotFound'
-        // );
+        throw new MailException('Service Name Not Found!');
     }
 }
