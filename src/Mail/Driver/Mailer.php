@@ -20,7 +20,6 @@ class Mailer extends Config implements Contract
     public function __construct($option = [])
     {
         $this->config['debug'] = SMTP::DEBUG_OFF;                   //Enable verbose debug output
-        $this->config['type'] = 'smtp';                             //Send using SMTP
         $this->config['secure'] = PHPMailer::ENCRYPTION_SMTPS;      //Enable implicit TLS encryption
 
         if ($option && is_array($option)) {

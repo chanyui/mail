@@ -15,6 +15,7 @@ class Config
         'from'     => '',                                 //send address
         'name'     => '',                                 //send name
         'charset'  => 'UTF-8',                            //The character set of the message.
+        'type'     => 'smtp'                              //Send using SMTP
     ];
 
     /**
@@ -26,7 +27,7 @@ class Config
     {
         if ($msg !== true) {
             throw new MailException($msg);
-        }else{
+        } else {
             return $msg;
         }
     }
