@@ -14,7 +14,8 @@
   "require": {
     "php": ">=5.6",
     "phpmailer/phpmailer": "^6.0",
-    "swiftmailer/swiftmailer": "^5.4"
+    "swiftmailer/swiftmailer": "^5.4",
+    "symfony/mailer": "^5.4"
   },
   "autoload": {
     "psr-4": {
